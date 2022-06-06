@@ -1,14 +1,12 @@
 from sys import stdin
-
+target = {'a', 'e', 'i', 'o', 'u'}
 while True:
     s = stdin.readline().lower().rstrip()
-    ans = 0
+    cnt = 0
     if s == '#':
         break
     else:
-        ans += s.count('a')
-        ans += s.count('e')
-        ans += s.count('i')
-        ans += s.count('o')
-        ans += s.count('u')
-        print(ans)
+        for i in s:
+            if i in target:
+                cnt += 1
+        print(cnt)
