@@ -8,13 +8,9 @@ def order(o, s):
     elif o == 'S':
         return s - 1 if s > 0 else 9999
     elif o == 'L':
-        s = str(s)
-        s = '0' * (4 - len(s)) + s
-        return int(s[1:] + s[0])
+        return (s * 10) % 10000 + s//1000
     elif o == 'R':
-        s = str(s)
-        s = '0' * (4 - len(s)) + s
-        return int(s[-1] + s[:-1])
+        return s // 10 + (s % 10) * 1000
 
 
 def bfs(a, b):
