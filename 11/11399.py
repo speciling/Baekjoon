@@ -1,8 +1,4 @@
 n = int(input())
-t = sorted(list(map(int, input().split())))
-ans = 0
-
-for i in range(n):
-    ans += t[i] * (n-i)
-
-print(ans)
+p = list(map(int, input().split()))
+p.sort()
+print(sum([t*(n-i) for i, t in enumerate(p)]))
