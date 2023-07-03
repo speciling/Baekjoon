@@ -1,22 +1,19 @@
+import sys
 from collections import deque
 
+n, m = map(int, sys.stdin.readline().split())
+maze = [sys.stdin.readline().rstrip() for _ in range(n)]
+move = ((1, 0), (-1, 0), (0, 1), (0, -1))
+visited = [[0]*m for _ in range(n)]
+visited[0][0] = 1
+q = deque([(0, 0)])
 
-def bfs(graph, x, y):
-    dx = [1, -1, 0, 0]
-    dy = [0, 0, 1, -1]
-    queue = deque()
-    queue.append((x, y))
-    while queue:
-        x, y = queue.popleft()
-        for i in range(4):
-            nx, ny = x+dx[i], y+dy[i]
-            if 0 <= nx < n and 0 <= ny < m:
-                if graph[nx][ny] == 1:
-                    graph[nx][ny] = graph[x][y] + 1
-                    queue.append((nx, ny))
-    print(graph[-1][-1])
+while q:
+    x, y = q.popleft()
+    for dx, dy in move:
+        nx, ny = x+dx, y+dy
+        if 0 <= nx < n and 0 <= ny < m and maze[nx][ny]=='1' and not visited[nx][ny]:
+            visited[nx][ny] = visited[x][y] + 1
+            q.append((nx, ny))
 
-
-n, m = map(int, input().split())
-maze = [list(map(int, input())) for _ in range(n)]
-bfs(maze, 0, 0)
+print(visited[n-1][m-1])
