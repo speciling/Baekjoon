@@ -1,19 +1,14 @@
-from sys import stdin
+import sys
 
-n, k = map(int, stdin.readline().split())
-arr = [int(stdin.readline()) for _ in range(n)]
-start = 1
-end = max(arr)
-max_len = -1
-
-while start <= end:
-    mid = (start + end) // 2
-    m = 0
-    for i in arr:
-        m += i//mid
-    if m >= k:
-        max_len = mid
-        start = mid + 1
+k, n = map(int, sys.stdin.readline().split())
+arr = list(map(int, sys.stdin.readlines()))
+s, e, ans = 1, max(arr), -1
+while s<=e:
+    m = (s+e)//2
+    num = sum(i//m for i in arr)
+    if num >= n:
+        ans = m
+        s = m+1
     else:
-        end = mid - 1
-print(max_len)
+        e = m-1
+print(ans)

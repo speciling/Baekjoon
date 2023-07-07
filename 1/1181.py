@@ -1,7 +1,5 @@
-from sys import stdin
+print("\n".join(sorted(set(open(0).read().split()[1:]), key=lambda x: (len(x), x))))
 
-n = int(stdin.readline())
-words = list({stdin.readline().rstrip() for _ in range(n)})
-words.sort(key= lambda x : (len(x), x))
-
-print('\n'.join(words))
+# words = set(open(0).read().split()[1:])
+# words = sorted(words, key=lambda x: (len(x), x))
+# print("\n".join(words))

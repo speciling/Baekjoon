@@ -1,22 +1,16 @@
-from sys import stdin
+import sys
+input = sys.stdin.readline
+n, m = map(int, input().split())
+trees = list(map(int, input().rstrip().split()))
+s, e, ans = 0, max(trees), 0
 
-n, m = map(int, stdin.readline().split())
-arr = list(map(int, stdin.readline().split()))
-
-start = 1
-end = 10 ** 9
-
-result = 0
-while start <= end:
-    mid = (start + end) // 2
-    total = 0
-    for i in arr:
-        if i > mid:
-            total += i - mid
-    if total < m:
-        end = mid - 1
+while s<=e:
+    mid = (s+e)//2
+    amount = sum(map(lambda x: x-mid if x>mid else 0, trees))
+    if amount >= m:
+        ans = max(ans, mid)
+        s = mid+1
     else:
-        result = mid
-        start = mid + 1
+        e = mid-1
 
-print(result)
+print(ans)

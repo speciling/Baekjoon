@@ -1,2 +1,1 @@
-n = list(input())
-print(''.join(sorted(n, reverse=True)))
+print(''.join(sorted(input(), reverse=True)))
